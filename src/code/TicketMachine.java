@@ -5,7 +5,10 @@ package code;
 
 public class TicketMachine {
 	// data
-	private int cost, totalMoney;				// cost of one regular ticket
+	private int cost;
+	private int total = 0;
+	private int currentTicketAmount = 0;
+	private int ticketCount = 0;				// cost of one regular ticket
 	
 	// constructors
 	// -- default constructor
@@ -24,13 +27,26 @@ public class TicketMachine {
 		return cost;
 	}
 
-	public int totalAmountInserted(int inserted){
-		totalMoney += inserted;
-		System.out.println("Current amount inserted: $" + totalMoney);
-		return totalMoney;
+	// updates the amount of money collected for a ticket
+	public void currentCollected(int received){
+		currentTicketAmount += received;
+	}
+
+	// getter for amount of money collected for a ticket
+	public int getCurrentTicketAmount(){
+		return currentTicketAmount;
+	}
+
+	public int totalMoney(){
+		total += currentTicketAmount;
+		System.out.println("Total money collected: $" + total);
+		return total;
 	}
 
 	public String printTicket(){
+		ticketCount++;
+		total += currentTicketAmount;
+		currentTicketAmount = 0;
 		String ticket = "This is your ticket";
 		return ticket;
 	}

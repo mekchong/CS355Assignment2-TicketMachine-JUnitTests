@@ -25,32 +25,41 @@ public class TestTicketMachine {
 
 	TicketMachine tm = null;
 
-
+/*
 	@Before
 	public void setUp(){
 		tm = new TicketMachine(100);
 	}
-
+*/
 	@Test
 	public void testTicketMachine() {
+		tm = new TicketMachine(100);
 		assertNotNull(tm);
 	}
 
 	@Test
 	public void testGetCost() {
-		//TicketMachine tm = new TicketMachine(100);
+		TicketMachine tm = new TicketMachine(100);
 		int cost = tm.getCost();
 		assertEquals(100, cost);
 	}
 
-	//@Test
-	public void testRefund(){
-
+	@Test
+	public void getCurrentTicketAmount(){
+		TicketMachine tm = new TicketMachine(100);
+		tm.currentCollected(25);
+		assertEquals(25, tm.getCurrentTicketAmount());
 	}
 	@Test
 	public void testPrintTicket(){
-		//TicketMachine tm = new TicketMachine(100);
+		TicketMachine tm = new TicketMachine(100);
 		String ticket = tm.printTicket();
 		assertEquals("This is your ticket", ticket);
+
+	}
+
+	@Test
+	public void testTicketCount(){
+
 	}
 }	// end - class TestTicketMachine
