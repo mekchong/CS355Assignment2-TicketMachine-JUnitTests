@@ -6,10 +6,11 @@ package code;
 public class TicketMachine {
 	// data
 	private int cost;
-	private int total = 0;
-	private int currentTicketAmount = 0;
-	private int ticketCount = 0;				// cost of one regular ticket
-	
+	private int total;
+	private int currentTicketAmount;
+	private int ticketCount;				// cost of one regular ticket
+	private int leftToPay;
+
 	// constructors
 	// -- default constructor
 	public TicketMachine () {
@@ -28,12 +29,18 @@ public class TicketMachine {
 	}
 
 	// updates the amount of money collected for a ticket
-	public void currentCollected(int received){
-		currentTicketAmount += received;
+	public int currentCollected(int received){
+		if(received <= 0){
+			System.out.println("Please insert real amounts of money");
+			return currentTicketAmount;
+		}
+		else{
+			return currentTicketAmount += received;
+		}
 	}
 
 	// getter for amount of money collected for a ticket
-	public int getCurrentTicketAmount(){
+	public int getCurrentCollected(){
 		return currentTicketAmount;
 	}
 
@@ -43,12 +50,29 @@ public class TicketMachine {
 		return total;
 	}
 
+	public int getTicketCount(){
+		return ticketCount;
+	}
+
+	public void sufficientFundsCheck(){
+		if(currentTicketAmount < cost){
+			leftToPay = cost - currentTicketAmount;
+			System.out.println("Insufficient funds. $" + leftToPay+ "more required");
+		}
+		else{
+			printTicket();
+		}
+	}
+
 	public String printTicket(){
+		/*
 		ticketCount++;
 		total += currentTicketAmount;
 		currentTicketAmount = 0;
+		*/
 		String ticket = "This is your ticket";
 		return ticket;
 	}
-	
+
+
 }	// end - class TicketMachine
